@@ -39,13 +39,17 @@ class Teacher implements TeacherInterface {
 }
 
 const createEmployee = (salary: number | string): Director | Teacher => {
-  if (typeof salary === "number" && salary < 500) {
-    return new Teacher();
-  } else {
-    return new Director();
-  }
+  return typeof salary === "number" && salary < 500
+    ? new Teacher()
+    : new Director();
 };
 
 console.log(createEmployee(200));
 console.log(createEmployee(1000));
 console.log(createEmployee("$500"));
+
+type Subjects = "Math" | "History";
+
+const teachClass = (todayClass: Subjects): string => {
+  return todayClass === "Math" ? "Teaching Math" : "Teaching History";
+};
